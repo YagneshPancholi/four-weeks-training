@@ -9,13 +9,17 @@ namespace BankAccount
 		public virtual void deposit(decimal amount)
 		{
 			Balance += amount;
+			Console.WriteLine("Successfully added " + amount + " money!!");
 		}
 		public virtual void withdraw(decimal amount)
 		{
-			if (amount < Balance)
+			if (amount <= Balance)
+			{
 				Balance -= amount;
+				Console.WriteLine("Successfully withdrawn " + amount + " money!!!");
+			}
 			else
-				throw new Exception("Cannot withdraw");
+				Console.WriteLine("insufficiant fund!!!");
 		}
 		public decimal getBalance()
 		{
@@ -36,16 +40,7 @@ namespace BankAccount
 			//Console.WriteLine(interestRate);
 			return balance * 30 * ((decimal)interestRate / 100) / 365;
 		}
-		public override void withdraw(decimal amount)
-		{
-			if (amount < Balance)
-			{
-				Balance -= amount;
-				Console.WriteLine("Successfully withdrawn " + amount + " money!!!");
-			}
-			else
-				Console.WriteLine("insufficiant fund!!!");
-		}
+		
 		public override void deposit(decimal amount)
 		{
 			Balance += amount;
@@ -62,5 +57,22 @@ namespace BankAccount
 			this.Balance = bal;
 			this.OverdraftLimit = od; 
 		}
-	}
+        public override void withdraw(decimal amount)
+        {
+			if (amount <= Balance + OverdraftLimit)
+			{
+				decimal tempBalance = Balance -  amount;
+				if(tempBalance < 0)
+				{
+					OverdraftLimit -= amount - Balance;
+					Balance = 0;
+				}
+				Console.WriteLine("Successfully withdrawn " + amount + " money!!!");
+				Console.WriteLine("Your OverDraftAmount : " + OverdraftLimit);
+			}
+			else
+				Console.WriteLine("insufficiant fund!!!");
+			
+		}
+    }
 }
