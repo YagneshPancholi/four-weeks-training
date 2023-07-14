@@ -10,7 +10,7 @@
         // Implement Process method
         public int Process(string input)
         {
-            throw new NotImplementedException();
+           return input.Length;
         }
     }
 
@@ -19,14 +19,21 @@
         // Implement Process method
         public string Process(double input)
         {
-            throw new NotImplementedException();
+            return input.ToString();
         }
     }
     internal class Program
     {
         static void Main(string[] args)
         {
-            // Demonstrate covariance and contravariance with IProcessor interface
+            // Covariance example]
+            IProcessor<string,int> stringToIntProcessor = new StringToIntProcessor();
+            Console.WriteLine(stringToIntProcessor.Process("Hello World!!"));
+
+            // Contravariance example
+            IProcessor<double, string> doubleToStringProcessor = new DoubleToStringProcessor();
+            Console.WriteLine(doubleToStringProcessor.Process(2.96));
+            Console.ReadLine();
         }
     }
 }
