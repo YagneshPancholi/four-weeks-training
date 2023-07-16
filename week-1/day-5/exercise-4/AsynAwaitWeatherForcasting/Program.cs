@@ -10,7 +10,7 @@ namespace AsynAwaitWeatherForcasting
         static void Main(string[] args)
         {
 
-            string city = "Delhi";
+            string city = "Vadodara";
             // Call the method to fetch weather data
             Console.WriteLine(city);
             FetchWeatherDataAsync(city);
