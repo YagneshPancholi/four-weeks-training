@@ -17,6 +17,7 @@ public class Book
 		Author = author;
 		PublicationYear = publicationYear;
 		BookId = ++HowManyBooksAvaliable;
+		IsAvailable = true;
 	}
 
 	public static void addBook()
@@ -54,10 +55,9 @@ public class Book
 			Console.WriteLine("There is No Book Right Now in Library, First Add book .");
 			return false;
 		}
-		else		{
-
+		else		
+		{
 			int id = 0;
-
 			bool isIntFlag = false;
 			while (!isIntFlag)
 			{
@@ -152,16 +152,53 @@ public class Book
 				Console.WriteLine("Title : " + book.Title);
 				Console.WriteLine("Author FullName : " + book.Author.fullName());
 				Console.WriteLine("Publication Year : " + book.PublicationYear);
+				if (book.IsAvailable)
+					Console.WriteLine("Avaliable : YES");
+				else
+					Console.WriteLine("Avaliabe : NO");
 				Console.WriteLine("============================================");
 			}
 		}
 	}
 	public static void searchBooks()
 	{
-
+		Console.WriteLine("I am here");
+		Console.WriteLine("Enter KeyWord To Search : ");
+		string keyword = Console.ReadLine().ToLower();
+		var result = books.Where(b => b.Title.ToLower().Contains(keyword) || b.Author.FirstName.ToLower().Contains(keyword) || b.Author.LastName.ToLower().Contains(keyword) || b.PublicationYear.ToString().Contains(keyword)).ToList();
+		if(result.Any())
+		{
+			foreach (var book in result)
+			{
+				Console.WriteLine("BookID : " + book.BookId);
+				Console.WriteLine("Title : " + book.Title);
+				Console.WriteLine("Author FullName : " + book.Author.fullName());
+				Console.WriteLine("Publication Year : " + book.PublicationYear);
+				Console.WriteLine("============================================");
+				if (book.IsAvailable)
+					Console.WriteLine("Avaliable : YES");
+				else
+					Console.WriteLine("Avaliabe : NO");
+			}
+		}
+		else
+		{
+			Console.WriteLine("Sorry, No Search Result Found");
+		}
+		
 	}
 	public static void filterBooksByStatus()
 	{
+		var results = books.Where(b => b.IsAvailable == true).ToList();
+		Console.WriteLine("All Avaliable Books ");
+		foreach (var book in results)
+		{
+			Console.WriteLine("BookID : " + book.BookId);
+			Console.WriteLine("Title : " + book.Title);
+			Console.WriteLine("Author FullName : " + book.Author.fullName());
+			Console.WriteLine("Publication Year : " + book.PublicationYear);
+			Console.WriteLine("============================================");
+		}
 
 	}
 

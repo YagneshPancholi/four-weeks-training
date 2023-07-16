@@ -29,8 +29,19 @@ public class Author
         string firstName = Console.ReadLine();
         Console.WriteLine("LastName : ");
         string lastName = Console.ReadLine();
-        Console.WriteLine("Enter Date Of Birst(YYYY-MM-DD) : ");
-        DateTime dob = Convert.ToDateTime(Console.ReadLine());
+        bool isDOB = false;
+        DateTime dob = new DateTime(1901,01,01) ;
+        while (!isDOB)
+        {
+            Console.WriteLine("Enter Date Of Birth(DD-MM-YYYY) or (YYYY-MM-DD) : ");
+            string input = Console.ReadLine();
+            if (Utilities.isValidateDateOfBirth(input))
+            {
+                dob = Convert.ToDateTime(input);
+                isDOB = true;
+            }
+        }
+        Console.WriteLine(dob);
         authors.Add(new Author(firstName, lastName, dob));
     }
     public static bool updateAuthor()
@@ -42,13 +53,78 @@ public class Author
         }
         else
         {
-            Console.WriteLine("Enter AuthorID To Update : ");
-            return true;
+            int id = 0;
+            bool isIntFlag = false;
+            while (!isIntFlag)
+            {
+                Console.WriteLine("Enter AuthorID To Update : ");
+                string input = Console.ReadLine();
+                if (Utilities.isInt(input))
+                {
+                    id = int.Parse(input);
+                    isIntFlag = true;
+                }
+            }
+            var author = authors.FirstOrDefault(a => a.AuthorId == id);
+            if (author == null)
+            {
+                Console.WriteLine("No Author Avaliabe with this ID...");
+                return false;
+            }else
+            {
+                Console.WriteLine("Enter Author FirstName : ");
+                author.FirstName = Console.ReadLine();
+                Console.WriteLine("Enter Author LastName : ");
+                author.LastName = Console.ReadLine();
+                bool isDOB = false;
+                while (!isDOB)
+                {
+                    Console.WriteLine("Enter Date Of Birth(DD-MM-YYYY) or (YYYY-MM-DD) : ");
+                    string input = Console.ReadLine();
+                    if (Utilities.isValidateDateOfBirth(input))
+                    {
+                        author.DateOfBirth = Convert.ToDateTime(input);
+                        isDOB = true;
+                    }
+                }
+                return true;
+            }
         }
     }
     public static bool deleteAuthor()
     {
-        return false;
+        if(HowManyAuthors == 0)
+        {
+            int id = -1;
+            bool isIntFlag = false;
+            while (!isIntFlag)
+            {
+                Console.WriteLine("Enter AuthorId To Delete : ");
+                string input = Console.ReadLine();
+                if (Utilities.isInt(input))
+                {
+                    id = int.Parse(input);
+                    isIntFlag = true;
+                }
+            }
+            var author = authors.FirstOrDefault(a => a.AuthorId == id);
+            if (author == null)
+            {
+                Console.WriteLine("No Author Avaliable with this ID");
+                return false;
+            }
+            else
+            {
+                authors.Remove(author);
+                Author.HowManyAuthors--;
+                return true;
+            }
+        }
+        else
+        {
+            Console.WriteLine("OOPS, There is NO Author, Please add First..");
+            return false;
+        }
     }
     public static void listAllAuthors()
     {

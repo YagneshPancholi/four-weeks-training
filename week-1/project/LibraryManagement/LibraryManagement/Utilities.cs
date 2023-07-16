@@ -1,6 +1,4 @@
-﻿using System;
-
-public class Utilities
+﻿public class Utilities
 {
     public static void DisplayMenu()
     {
@@ -54,5 +52,18 @@ public class Utilities
         }
         Console.WriteLine("Wrong Format !!!\nPublicationYear format should be YYYY, eg.2001, 1998 etc .");
         return false;
+    }
+    public static bool isValidateDateOfBirth(string input)
+    {
+        if(DateTime.TryParse(input, out DateTime ignoreMe))
+        {
+            return true;
+        }
+        else
+        {
+            Console.WriteLine("Wrong Date Format, Please Follow This Formate(DD-MM-YYYY) or (YYYY-MM-DD)");
+            return false;
+        }
+
     }
 }
