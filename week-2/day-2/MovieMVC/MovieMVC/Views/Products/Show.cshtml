@@ -1,0 +1,15 @@
+@{
+    ViewData["Title"] = "Show";
+}
+<section style="text-align=center">
+    <h2>Show</h2>
+          
+    <p>returned from Show View</p>
+    <ul>
+    @for (int i = 0; i < (int)ViewData["noOfTimes"]!; i++)
+    {
+        <li>@ViewData["name"]@i</li>
+    }
+    </ul>
+
+</section>

@@ -1,0 +1,27 @@
+@model MovieMVC.Models.ProductViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+<h2>Create</h2>
+<h3>Pass data from view To Controller</h3>
+<section style="border: 1px solid grey;width:300px">
+    @using(Html.BeginForm())
+    {
+    <label>Id</label>
+    @Html.TextBoxFor(m => m.Id)
+    <br />
+    <br />
+    <label>Name</label>
+    @Html.TextBoxFor(m => m.Name)
+    <br />
+    <br />
+    <label>Price</label>
+    @Html.TextBoxFor(m => m.Price)
+    <br />
+    <br />
+    <input type="submit"/>
+    <input type="reset"/>
+            
+    }
+
+</section>
