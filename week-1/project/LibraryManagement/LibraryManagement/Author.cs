@@ -2,13 +2,13 @@
 
 public class Author
 {
-    static List<Author> authors = new List<Author>();
+    public static List<Author> authors = new List<Author>();
     public int AuthorId { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public DateTime DateOfBirth { get; set; }
     public static int HowManyAuthors = 0;
-    public string fullName() => $"{FirstName}\t{LastName}";
+    public string FullName() => $"{FirstName}\t{LastName}";
     public Author(string firstName, string lastName, DateTime dob)
     {
         AuthorId = ++HowManyAuthors;
@@ -21,6 +21,7 @@ public class Author
         AuthorId = ++HowManyAuthors;
         FirstName = firstName;
         LastName = lastName;
+        DateOfBirth = DateTime.Now;
     }
     public static void addAuthor()
     {
@@ -93,7 +94,7 @@ public class Author
     }
     public static bool deleteAuthor()
     {
-        if(HowManyAuthors == 0)
+        if(HowManyAuthors != 0)
         {
             int id = -1;
             bool isIntFlag = false;
@@ -128,5 +129,20 @@ public class Author
     }
     public static void listAllAuthors()
     {
+        if(HowManyAuthors == 0)
+        {
+            Console.WriteLine(HowManyAuthors);
+            Console.WriteLine("No author is there..");
+        }
+        else
+        {
+            foreach (var author in authors)
+            {
+                Console.WriteLine("AuthorId:" + author.AuthorId);
+                Console.WriteLine("Author FullName:" + author.FullName());
+                Console.WriteLine("DateOfBirth:" + author.DateOfBirth);
+                Console.WriteLine("============================================");
+            }
+        }
     }
 }

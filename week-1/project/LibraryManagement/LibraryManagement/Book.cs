@@ -3,19 +3,21 @@ using System;
 
 public class Book
 {
-	static List<Book> books = new List<Book>();
+	public static List<Book> books = new List<Book>();
 
 	public int BookId { get; set; }
 	public string Title { get; set; }
 	public Author Author { get; set; }
 	public int PublicationYear { get; set; }
 	public bool IsAvailable { get; set; }
+	public int NoOfThisBook { get; set; }
 	public static int HowManyBooksAvaliable = 0;
-	public Book(string title, Author author, int publicationYear)
+	public Book(string title, Author author, int publicationYear,int noOfThisBook)
 	{
 		Title = title;
 		Author = author;
 		PublicationYear = publicationYear;
+		NoOfThisBook = noOfThisBook;
 		BookId = ++HowManyBooksAvaliable;
 		IsAvailable = true;
 	}
@@ -40,12 +42,25 @@ public class Book
 
 		Console.WriteLine("Author Details");
 		Console.WriteLine("FirstName : ");
-		string firstName = Console.ReadLine();
+		string? firstName = Console.ReadLine();
 		Console.WriteLine("LastName : ");
-		string lastName = Console.ReadLine();
+		string? lastName = Console.ReadLine();
 		Author author1 = new Author(firstName, lastName);
+		Author.authors.Add(author1);
+        int count = 0;
+        bool isIntFlag = false;
+        while (!isIntFlag)
+        {
+            Console.WriteLine("Enter Count of this Book : ");
+            string input = Console.ReadLine();
+            if (Utilities.isInt(input))
+            {
+                count = int.Parse(input);
+                isIntFlag = true;
+            }
+        }
 
-		books.Add(new Book(title, author1, publicationYear));
+        books.Add(new Book(title, author1, publicationYear,count));
 	}
 
 	public static bool updateBook()
@@ -97,8 +112,20 @@ public class Book
 				book.Author.FirstName = Console.ReadLine();
 				Console.WriteLine("LastName : ");
 				book.Author.LastName = Console.ReadLine();
-
-				return true;
+                int count = 0;
+                bool isIntFlag1 = false;
+                while (!isIntFlag1)
+                {
+                    Console.WriteLine("Enter Updated Count of this Book : ");
+                    string input = Console.ReadLine();
+                    if (Utilities.isInt(input))
+                    {
+                        count = int.Parse(input);
+                        isIntFlag1 = true;
+                    }
+                }
+				book.NoOfThisBook = count;
+                return true;
 			}
 		}
 	}
@@ -150,12 +177,13 @@ public class Book
 			{
 				Console.WriteLine("BookID : " + book.BookId);
 				Console.WriteLine("Title : " + book.Title);
-				Console.WriteLine("Author FullName : " + book.Author.fullName());
+				Console.WriteLine("Author FullName : " + book.Author.FullName());
 				Console.WriteLine("Publication Year : " + book.PublicationYear);
 				if (book.IsAvailable)
 					Console.WriteLine("Avaliable : YES");
 				else
 					Console.WriteLine("Avaliabe : NO");
+				Console.WriteLine("Avaliabe Pieces of THis Book: " + book.NoOfThisBook);
 				Console.WriteLine("============================================");
 			}
 		}
@@ -172,13 +200,14 @@ public class Book
 			{
 				Console.WriteLine("BookID : " + book.BookId);
 				Console.WriteLine("Title : " + book.Title);
-				Console.WriteLine("Author FullName : " + book.Author.fullName());
+				Console.WriteLine("Author FullName : " + book.Author.FullName());
 				Console.WriteLine("Publication Year : " + book.PublicationYear);
-				Console.WriteLine("============================================");
-				if (book.IsAvailable)
+                Console.WriteLine("Avaliabe Pieces of THis Book: " + book.NoOfThisBook);
+				if (book.NoOfThisBook > 0)
 					Console.WriteLine("Avaliable : YES");
 				else
 					Console.WriteLine("Avaliabe : NO");
+                Console.WriteLine("============================================");
 			}
 		}
 		else
@@ -189,14 +218,22 @@ public class Book
 	}
 	public static void filterBooksByStatus()
 	{
-		var results = books.Where(b => b.IsAvailable == true).ToList();
-		Console.WriteLine("All Avaliable Books ");
+		if(books.Count == 0)
+		{
+			Console.WriteLine("No Book Avaliable..");
+		}
+		var results = books.Where(b => b.NoOfThisBook > 0).ToList();
+		if(results != null)
+		{
+            Console.WriteLine("All Avaliable Books ");
+        }
 		foreach (var book in results)
 		{
 			Console.WriteLine("BookID : " + book.BookId);
 			Console.WriteLine("Title : " + book.Title);
-			Console.WriteLine("Author FullName : " + book.Author.fullName());
+			Console.WriteLine("Author FullName : " + book.Author.FullName());
 			Console.WriteLine("Publication Year : " + book.PublicationYear);
+			Console.WriteLine("Avaliabe Pieces of this Book: " + book.NoOfThisBook);
 			Console.WriteLine("============================================");
 		}
 

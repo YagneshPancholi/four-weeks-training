@@ -1,4 +1,6 @@
-﻿public class Utilities
+﻿using System.Text.RegularExpressions;
+
+public class Utilities
 {
     public static void DisplayMenu()
     {
@@ -64,6 +66,14 @@
             Console.WriteLine("Wrong Date Format, Please Follow This Formate(DD-MM-YYYY) or (YYYY-MM-DD)");
             return false;
         }
-
+    }
+    public static bool isEmail(string input)
+    {
+        Regex pattern = new Regex(@"^([a-zA-Z0-9])*@([a-zA-Z]*)\.(([a-zA-Z]{2}\.[a-zA-Z]{2})|([A-Za-z]{2,3}))$");
+        if(pattern.IsMatch(input))
+        {
+            return true;
+        }
+        return false;
     }
 }
