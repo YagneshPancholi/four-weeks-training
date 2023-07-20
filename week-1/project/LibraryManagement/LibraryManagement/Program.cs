@@ -76,19 +76,40 @@ namespace LibraryManagement
                         Utilities.showSuccessMessage("Borrower Added");
                         break;
                      case 10:
-                        Borrower.updateBorrower();
+                        if (Borrower.updateBorrower())
+                        {
+                            Utilities.showSuccessMessage("Borrower Update");
+                        }
+                        else
+                        {
+                            Utilities.showUnsuccessMessage("Borrower Update");
+                        }                        
                          break;
                      case 11:
-                        Borrower.deleteBorrower();
+                        if (Borrower.deleteBorrower())
+                        {
+                            Utilities.showSuccessMessage("Borrwer Delete");
+                        }
+                        else
+                        {
+                            Utilities.showUnsuccessMessage("Borrower Delete");
+                        }
                          break;
                      case 12:
                         Borrower.listAllBorrowers();
                          break;
                      case 13:
-                        Borrower.registerBookToBorrower();
+                        if (Borrower.registerBookToBorrower())
+                        {
+                            Utilities.showSuccessMessage("register Book TO Borrwer");
+                        }
+                        else
+                        {
+                            Utilities.showUnsuccessMessage("register Book TO Borrwer");
+                        }
                          break;
                      case 14:
-                        BorrowedBook.displayBorrowedBooks();
+                        Borrower.displayBorrowedBooks();
                          break;
                     case 15:
                         Book.searchBooks();
