@@ -1,27 +1,37 @@
-@model MovieMVC.Models.ProductViewModel
+@model ProductMVCWithEF.Models.Product
 @{
-    ViewData["Title"] = "Create";
+	ViewData["Title"] = "Create";
 }
 <h2>Create</h2>
-<h3>Pass data from view To Controller</h3>
+<h3>Enter Product's Details:</h3>
 <section style="border: 1px solid grey;width:300px">
-    @using(Html.BeginForm())
-    {
-    <label>Id</label>
-    @Html.TextBoxFor(m => m.Id)
-    <br />
-    <br />
-    <label>Name</label>
-    @Html.TextBoxFor(m => m.Name)
-    <br />
-    <br />
-    <label>Price</label>
-    @Html.TextBoxFor(m => m.Price)
-    <br />
-    <br />
-    <input type="submit"/>
-    <input type="reset"/>
-            
-    }
+	<br />
+	@using(Html.BeginForm())
+	{
+	<label>Name</label>
+	@Html.TextBoxFor(m => m.Name)
+	<br />
+	<br />
+	<label>Price</label>
+	@Html.TextBoxFor(m => m.Price)
+	<br />
+	<br />
+	<label for="productType">Category</label>
+	<select id="productType" name="productCategory">
 
+			<option value="0">Electronics</option>
+
+			<option value="1">Wearable</option>
+
+			<option selected="selected" value="2">Kitchen</option>
+
+			<option value="4">SelfImprovement</option>
+
+	</select>
+	<br />
+	<br />
+	<input type="submit"/>
+	<input type="reset"/>
+	}
+	<br />
 </section>

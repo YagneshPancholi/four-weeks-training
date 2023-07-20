@@ -1,20 +1,26 @@
-using System;
-namespace MovieMVC.Models
+﻿namespace ProductMVCWithEF.Models
 {
-    public class ProductViewModel
+    public class Product
     {
-        public int Id { get; set; }
+        public int ProductId { get; set; }
         public string? Name { get; set; }
         public decimal Price { get; set; }
+       
+        public int CategoryId { get; set; }
+		
 
-    }
+		public Product()
+		{
+		}
+	}
+   
     public class productsException : Exception
     {
         public override string Message
         {
             get
             {
-                return "not a valid product details...";
+                return "product Name can not be NULL...";
             }
         }
     }

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MovieMVC.Models;
+using ProductMVCWithEF.Models;
 using System.Diagnostics;
 
-namespace MovieMVC.Controllers
+namespace ProductMVCWithEF.Controllers
 {
     public class HomeController : Controller
     {
@@ -22,11 +22,5 @@ namespace MovieMVC.Controllers
         {
             return View();
         }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-    }
+	}
 }

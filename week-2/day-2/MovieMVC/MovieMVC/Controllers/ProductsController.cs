@@ -1,12 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Text.Encodings.Web;
-using MovieMVC.Models;
+using ProductMVCWithEF.Models;
 using System.Net.Mail;
-
+using Microsoft.AspNetCore.Mvc.Rendering;
+using ProductMVCWithEF;
+using ProductMVCWithEF.Services;
 
 public class ProductsController : Controller
 {
-    public static List<ProductViewModel> products = new List<ProductViewModel>();
+   
     public IActionResult Index()
     {
         return View();
@@ -21,35 +23,44 @@ public class ProductsController : Controller
     {
         return View();
     }
-   
-    //}
-    public ActionResult Create()
-    {
-        return View(new ProductViewModel());
-    }
-    [HttpPost]
-    public ActionResult Create(ProductViewModel p)
-    {
-        try
-        {
-            if(p.Name == null)
-            {
-                throw new productsException();
-            }
 
-        }catch (productsException ex)
-        {
-            //ViewData["error"] = ex.Message;
-            return Content(ex.Message);
-        }
-        /*return Json(p)*/;
-        return Content(p.Id+"\t"+p.Name+"\t"+p.Price);
+	
+
+	
+public ActionResult Create()
+	{
+	    return View(new Product());
+	}
+
+	[HttpPost]
+    public ActionResult Create(Product p)
+    {
+        ViewData["categoryList"] = new List<Category>();
+		try
+		{
+			if (p.Name == null)
+			{
+				throw new productsException();
+			}
+
+		}
+		catch (productsException ex)
+		{
+			//ViewData["error"] = ex.Message;
+			return Content(ex.Message);
+		}
+
+        ProductServices.AddProduct(p); 
+		return Json(p);
+        //return Content(p.ProductId+"\t"+p.Name+"\t"+p.Price+"\t"+p.CategoryId+"\t"+p.Category.ToString());
     }
-    //void AddProductTOList(string pid, string pname, string pprice)
-    //{
-    //    products.add(new Product(int.Parse(pid), pname, decimal.Parse(pprice));
-    //}
-    public IActionResult Edit()
+	
+	
+	//void AddProductTOList(string pid, string pname, string pprice)
+	//{
+	//    products.add(new Product(int.Parse(pid), pname, decimal.Parse(pprice));
+	//}
+	public IActionResult Edit()
     {
         return View();
     }

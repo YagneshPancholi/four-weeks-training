@@ -4,5 +4,29 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p> Welcome To Product MVC With Entity Framework...</p>
+    <p>We will have CRUD Operation Functionality...</p>
 </div>
+
+<section>
+    <fieldset>
+        <legend>Crud Operations:</legend>
+        <ol>
+            <li class="nav-item">
+                <a class="link-opacity-100" asp-area="" asp-controller="Products" asp-action="Create">Create</a>
+            </li>
+            @*<li class="nav-item">
+                <a class="link-opacity-100" asp-area="" asp-controller="Products" asp-action="Details">Details</a>
+            </li>*@
+            <li class="nav-item">
+                <a class="link-opacity-100" asp-area="" asp-controller="Products" asp-action="Show">Show</a>
+            </li>
+            <li class="nav-item">
+                <a class="link-opacity-100" asp-area="" asp-controller="Products" asp-action="Edit">Edit</a>
+            </li>
+            <li class="nav-item">
+                <a class="link-opacity-100" asp-area="" asp-controller="Products" asp-action="Delete">Delete</a>
+            </li>
+        </ol>
+    </fieldset>
+</section>
