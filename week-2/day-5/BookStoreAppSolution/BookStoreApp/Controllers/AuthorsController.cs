@@ -10,12 +10,12 @@ using BookStoreApp.Models;
 
 namespace BookStoreApp.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[BookStore]")]
     [ApiController]
     public class AuthorsController : ControllerBase
     {
         private readonly BookContext _context;
-
+          
         public AuthorsController(BookContext context)
         {
             _context = context;
