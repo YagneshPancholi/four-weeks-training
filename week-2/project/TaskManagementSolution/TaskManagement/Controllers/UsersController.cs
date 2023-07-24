@@ -13,6 +13,7 @@ namespace TaskManagement.Controllers
 {
     [Route("api/User")]
     [ApiController]
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly TaskContext _context;

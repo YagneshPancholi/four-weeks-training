@@ -1,0 +1,26 @@
+header{
+    background-color: #a8dadc;
+    font-size: x-large;
+}
+header a{
+    color: #e63946;
+    margin: auto;
+    font-family: Arial, Helvetica, sans-serif;
+}
+main{
+    background-color: #2C3333;
+}
+main p{
+    font-size: large;
+    font-family: 'Times New Roman', Times, serif;
+    color: #0E8388;
+}
+footer{
+    background-color: #1D5D9B;
+    font-size: large;
+    font-style: oblique;
+    color: #F4D160;
+}
+a{
+    text-decoration: none;
+}

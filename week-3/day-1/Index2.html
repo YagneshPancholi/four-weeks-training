@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation</title>
+    <script src="app3.js"></script>
+</head>
+<body>
+    
+    <section>
+        <fieldset>
+            <legend>Your Information</legend>
+                <label for="userTextInput">Enter Your Text</label>
+                <textarea id="userTextInput" value="userTextInput"></textarea>
+                <br><br>
+                <label for="hexbgcolor">Enter Hex Code for BG Color:</label>
+                 <input type="text" id="hexbgcolor">   
+                <br><br>
+                <strong>OR</strong>
+                <br><br>
+                <label for="bgcolor">Colors:</label>
+                <select name="bgcolor" id="bgcolor">
+                    <option value="Red">Red</option>
+                    <option value="Blue">Blue</option>
+                    <option value="Maroon">Maroon</option>
+                    <option value="Gray" selected>Gray</option>
+                </select>
+                <br><br>
+                
+                 
+                <button onclick="submitForm()">Submit and See Your Text</button>
+        </fieldset>
+    </section>
+    <section>
+        <p>Your Input</p>
+        <p id="userText"></p>
+    </section>
+</body>
+</html>
