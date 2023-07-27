@@ -13,7 +13,7 @@ namespace TaskManagement.Controllers
 {
     [Route("api/Task")]
     [ApiController]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class TaskItemsController : ControllerBase
     {
         private readonly TaskContext _context;

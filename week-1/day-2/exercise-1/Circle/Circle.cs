@@ -14,11 +14,11 @@ namespace Circle
         {
             this.radius = radius;
         }
-        public double getArea()
+        public double GetArea()
         {
             return Math.PI * radius * radius;
         }
-        public double getCircumference() 
+        public double GetCircumference() 
         {
             return 2 * 3.14 * radius; 
         }

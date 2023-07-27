@@ -7,6 +7,8 @@ using System.Security.Cryptography;
 using TaskManagement.Data;
 using TaskManagement.Models;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace TaskManagement.Controllers
 {
@@ -15,15 +17,23 @@ namespace TaskManagement.Controllers
     public class AuthController : ControllerBase
     {
         private readonly TaskContext _context;
+        private readonly IUserService _userService;
         private readonly  IConfiguration _configuration ;
         public User user = new User();
-        public AuthController(IConfiguration configuration, TaskContext context)
+        public AuthController(IConfiguration configuration, TaskContext context , IUserService userService)
         {
             _configuration = configuration;
             _context = context;
+            _userService = userService;
         }
-        
-       
+
+        [HttpGet("GetMe"),Authorize]
+         public ActionResult<string> GetMe()
+        {
+            var userName = _userService.GetMe();
+            //var userName = User.Identity.Name;
+            return Ok(userName);
+        }
         [HttpPost("Register")]
         public async Task<IActionResult> Register(UserDTO request)
         {
@@ -56,7 +66,8 @@ namespace TaskManagement.Controllers
         public static string CreateToken(User user, IConfiguration configuration)
         {
             List<Claim> claims = new List<Claim> { 
-                new Claim(ClaimTypes.Name, user.Name)
+                new Claim(ClaimTypes.Name, user.Name),
+                new Claim(ClaimTypes.Role, "Admin")
             };
             ;
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(configuration.GetSection("Appsettings:Token").Value));
