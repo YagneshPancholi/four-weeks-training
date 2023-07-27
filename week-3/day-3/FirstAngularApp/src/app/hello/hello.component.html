@@ -1,0 +1,11 @@
+ <!-- Interpolation -->
+<h2>Hello {{ name}}</h2>
+<!-- dataBinding -->
+<section *ngIf="hideAge">
+    <h3 [innerText]="age"></h3>
+</section>
+<button (click)="Toggle()">Toggle To See/Hide Age</button>
+<hr>
+<app-table name={{name}} [tableDetails]= users></app-table>
+
+

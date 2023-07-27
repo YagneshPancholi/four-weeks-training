@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task4</title>
+    <style>
+        p{
+            display: inline;
+        }
+        #see{
+            display: none;
+        }
+    </style>
+    <script src="Task4.js"></script>
+</head>
+<body>
+    <fieldset>
+        <legend>Enter Car Details</legend>
+    <label for="make">CompanyName:</label>
+    <input type="text" id="make">
+    <br><br>
+    <label for="model">Model</label>
+    <input type="text" id="model">
+    <br><br>
+    <label for="year">Year</label>
+    <input type="number" id="year">
+    <br><br>
+    <input type="submit" onclick="displayInfo()">
+    <!-- <button >Click Me</button> -->
+    </fieldset>
+
+    <fieldset id="see">
+        <legend>Car Details</legend>
+        <p>Company: </p>
+        <p id="carMake"></p>
+        <p> Created </p>
+        <p id="carModel"></p>
+        <p> in the </p>
+        <p id="carYear"></p>
+        <p> year</p>
+    </fieldset>
+</body>
+</html>

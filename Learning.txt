@@ -1,0 +1,29 @@
+Angular varsion is 16
+
+For css we can use bootstrap, angular material and tailwind css.
+
+Pipes:
+It is used to convert type of data which are coming .
+
+DateTimePipe:
+Uppercase & lowercase: 
+currency:
+Json: it is used in debug as to see value in object dont use in production
+slice: how many object you want to display, firstindex & lastindex
+Async:
+ 
+LifeCycle Hooks & Component Communication:
+
+ngOnChanges
+ngOnInit
+ngDoCheck
+ngAfterContentInit
+ngAfterContentChecked
+ngAfterVIewInit
+ngAfterVIewChecked
+ngOnDestroy
+
+Compo. comm using:
+Using @Input and @Output
+Using @ViewChild , @ ContentChild
+using service

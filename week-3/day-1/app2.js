@@ -27,10 +27,11 @@ student1.addCourse("Chemistry");
 student1.addCourse("Physics");
 student1.addCourse("Maths");
 
-// console.log("before");
-// console.log(student1);
-// console.log("after");
-// student1.removeCourse("Chemistry");
+console.log("before");
+console.log(student1.courses);
+student1.removeCourse("Chemistry");
+console.log("after");
+console.log(student1.courses);
 
 student2.addCourse("Physics");
 student2.addCourse("Chemistry");
