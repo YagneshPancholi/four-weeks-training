@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TableServicesService } from './Services/table-services.service';
   
 
 @Component({
@@ -9,10 +10,20 @@ import { Component } from '@angular/core';
 
 
 export class HelloComponent {
+  
+  constructor(private service:TableServicesService) {
+    
+  }
+        mynewname:string = this.service.getName();
         name:string = "yagnesh";
         age:number = 21;
         hideAge:boolean = false;
+        textToShow:string = '';
         Toggle(){
+          this.hideAge = !this.hideAge;
+        }
+        nothing(text:string){
+          this.textToShow =  text;
           this.hideAge = !this.hideAge;
         }
         users : User[] = [{

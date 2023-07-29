@@ -6,6 +6,12 @@
 </section>
 <button (click)="Toggle()">Toggle To See/Hide Age</button>
 <hr>
-<app-table name={{name}} [tableDetails]= users></app-table>
+<app-table name={{name}} [tableDetails]= users (nothing)="nothing($event)"></app-table>
+<div *ngIf="textToShow && hideAge">
+    {{textToShow}}
+</div>
+
+<div>broooo</div>
+<div>{{mynewname}}</div>
 
 

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { User } from '../hello.component';
 
 @Component({
@@ -8,6 +8,11 @@ import { User } from '../hello.component';
 })
 export class TableComponent {
 
+  myName:string = "yagnesh";
   @Input() name :string = '';
   @Input() tableDetails : User[] =[];
+  @Output() nothing = new EventEmitter<string>;
+  greetMe(text:string):void{
+    this.nothing.emit(text);
+  }
 }

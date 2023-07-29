@@ -27,3 +27,6 @@ Compo. comm using:
 Using @Input and @Output
 Using @ViewChild , @ ContentChild
 using service
+
+Dependency Injection:
+
