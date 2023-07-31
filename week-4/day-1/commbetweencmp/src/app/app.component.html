@@ -1,0 +1,58 @@
+<h1>Communication In Angular</h1>
+<hr />
+<h2>Communication inside the component</h2>
+<div>
+  <p ng-non-bindable>
+    this is called interpolation "&lcub;&lcub;&rcub;<!---->&rcub;"
+  </p>
+  <p>{{ name }}</p>
+</div>
+<!-- data binding -->
+<p>below is image</p>
+<img [src]="imageUrl" alt="" />
+<div>
+  <p>{{ count }}</p>
+</div>
+<div>
+  <button (click)="incrementCount()">click</button>
+</div>
+<div>
+  <p>{{ count }}</p>
+</div>
+<h3>Two Way binding</h3>
+<div>
+  <input #nameRef type="text" [(ngModel)]="myName" />
+  <p>welcome to angular {{ myName }}</p>
+</div>
+<h3>Split Two Way binding</h3>
+<div>
+  <input
+    type="text"
+    name=""
+    id=""
+    [ngModel]="userName"
+    (ngModelChange)="greetYagnesh($event)"
+  />
+  <p>welcome to angular {{ userName }}</p>
+</div>
+<h3>Getters And Setters</h3>
+<div>
+  <input type="text" [(ngModel)]="customerName" />
+  <p>welcome to angular {{ customerName }}</p>
+</div>
+<hr />
+
+<h2>Communication between components</h2>
+<!-- <app-child [loggedIn]="userLoggedIn"></app-child> -->
+<h2>Parent Component</h2>
+<div>
+  <button (click)="userLoggedIn = true">Login</button>
+  <button (click)="userLoggedIn = false">LogOut</button>
+  {{ userLoggedIn }}
+</div>
+<app-child #child [loggedIn]="userLoggedIn"></app-child>
+
+<p>{{ child.name }}</p>
+<button (click)="child.greetMe()">Greet</button>
+
+<app-child (greetEvent)="greet($event)"></app-child>

@@ -30,3 +30,18 @@ using service
 
 Dependency Injection:
 
+
+Component Communication:
+data binding between 
+
+Interpolation == {{}} ==> one way cmp class -> template
+property binding == [] => class to template
+event binding  == template to class
+
+steps to use ViewChild() decorator
+
+template reference variable on html element
+crete a property of type elementRef and attached it with ViewChild decorator
+after defind ngAfterViewInit method
+
+@Input decorator -> pass data from Parent TO Child
